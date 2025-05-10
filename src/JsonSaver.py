@@ -1,7 +1,9 @@
-import os
 import json
+import os
+
 from src.json_base_class import JsonBase
 from src.vacancies import Vacancy
+
 
 class JsonSaver(JsonBase):
     """Класс для добавления, удаления и получения вакансий из файла"""

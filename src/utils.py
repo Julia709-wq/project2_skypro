@@ -8,6 +8,7 @@ def filter_by_keywords(vacancies, keywords):
             filtered.append(v)
     return filtered
 
+
 def filter_by_salary(vacancies, min_salary=0, max_salary=1_000_000):
     """Фильтрация по диапазону зарплат"""
     filtered = [
@@ -16,6 +17,7 @@ def filter_by_salary(vacancies, min_salary=0, max_salary=1_000_000):
     ]
     return filtered
 
+
 def sort_by_salary(vacancies, reverse=True):
     """Сортировка вакансий по зарплате"""
     return sorted(
@@ -23,6 +25,7 @@ def sort_by_salary(vacancies, reverse=True):
         key=lambda v: v.salary,
         reverse=reverse
     )
+
 
 def top_n_vacancies(vacancies, n):
     """Получение топ-N вакансий"""

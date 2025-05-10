@@ -26,8 +26,7 @@ class Vacancy:
         return self._experience
 
     def __repr__(self):
-        return (f"Название вакансии: {self.name}\nЗарплата: {self._salary}\n"
-                f"Ссылка: {self.link}\nТребуемый опыт работы: {self.experience}")
+        return f"Название вакансии: {self.name}\nЗарплата: {self._salary}\nСсылка: {self.link}\nТребуемый опыт работы: {self.experience}"
 
     def __validate_salary(self, salary):
         """Метод для валидации зарплаты"""

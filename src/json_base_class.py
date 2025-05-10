@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+
 class JsonBase(ABC):
     """Абстрактный класс для работы с файлом"""
 

@@ -1,5 +1,7 @@
 import requests
+
 from src.api_base import BaseAPI
+
 
 class HeadHunterAPI(BaseAPI):
     """Класс для работы с hh.ru"""
