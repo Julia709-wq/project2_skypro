@@ -1,6 +1,7 @@
 import pytest
 
 from src.vacancies import Vacancy
+from src.JsonSaver import JsonSaver
 
 
 @pytest.fixture
@@ -27,3 +28,23 @@ def vac2():
 @pytest.fixture
 def vac3():
     return Vacancy("Специалист по работе с БД", {'from': 130000, 'to': 140000}, "some url", "SQL, MySQL")
+
+@pytest.fixture
+def sample_api_response():
+    return {
+        "items": [
+            {"name": "Backend разработчик", "salary": {'from': 100000, 'to': 150000}},
+            {"name": "Frontend разработчик", "salary": {'from': 80000, 'to': 100000}}
+        ]
+    }
+
+@pytest.fixture
+def sample_json_file(tmp_path):
+    file_path = tmp_path / "test_vacancies.json"
+    file_path.write_text("[]", encoding="utf-8")
+    return str(file_path)
+
+@pytest.fixture
+def json_saver(sample_json_file):
+    return JsonSaver(file_path=sample_json_file)
+
