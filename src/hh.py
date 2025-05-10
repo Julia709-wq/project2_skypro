@@ -1,15 +1,32 @@
 import requests
-from src.base_class import Base
+from src.api_base import BaseAPI
 
-class Head(Base):
+class HeadHunterAPI(BaseAPI):
     """Класс для работы с hh.ru"""
 
-    def get_data(self):
+    def __init__(self):
+        self.__url = "https://api.hh.ru/vacancies"
+        self.__headers = {"User-Agent": "HH-API-Client"}
+
+    def connect_(self, params: dict):
         response = requests.get(
-            url="https://api.hh.ru/vacancies"
-        ).json()
-        return response['items']
+            url=self.__url,
+            headers=self.__headers,
+            params=params
+        )
+
+        if response.status_code != 200:
+            print(f"Ошибка при подключении к API: {response.reason}")
+
+        return response.json()
+
+    def get_data(self, keyword: str):
+        params = {"text": keyword,
+                  "per_page": 30}
+
+        data = self.connect_(params)
+        return data['items']
 
 
-hh_api = Head()
-print(hh_api.get_data())
+# hh_api = HeadHunterAPI()
+# print(hh_api.get_data('python'))
