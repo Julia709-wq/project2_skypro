@@ -9,7 +9,7 @@ def sample_vacancies():
     return [
         Vacancy("Backend разработчик", {'from': 100000, 'to': 150000}, "some url", "Python, Django, API development 1-3 года"),
         Vacancy("Frontend разработчик", {'from': 100000, 'to': 120000}, "some url", "React, JavaScript, CSS"),
-        Vacancy("Аналитик данных", {'from': 200000, 'to': 250000}, "some url", "Python, ML, statistics"),
+        Vacancy("Аналитик данных", {'from': 200000, 'to': 240000}, "some url", "Python, ML, statistics"),
         Vacancy("Менеджер", None, "some url", "")
     ]
 
@@ -47,4 +47,3 @@ def sample_json_file(tmp_path):
 @pytest.fixture
 def json_saver(sample_json_file):
     return JsonSaver(file_path=sample_json_file)
-
