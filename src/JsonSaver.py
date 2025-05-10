@@ -21,15 +21,15 @@ class JsonSaver(JsonBase):
     def __save_data(self, data):
         """Метод сохранения данных в файл"""
         with open(self.__file_path, "w", encoding='utf-8') as f:
-            json.dump([], f)
+            json.dump(data, f)
 
     def __vacancy_to_dict(self, vacancy: Vacancy):
         """Представление вакансии в виде словаря"""
         return {
-            "name": vacancy.__name,
-            "salary": vacancy.__salary,
-            "link": vacancy.__link,
-            "experience": vacancy.__experience
+            "name": vacancy.name,
+            "salary": vacancy.salary,
+            "link": vacancy.link,
+            "experience": vacancy.experience
         }
 
     def add_vacancy(self, vacancy: Vacancy):

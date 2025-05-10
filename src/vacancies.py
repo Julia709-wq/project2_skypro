@@ -1,14 +1,33 @@
-
 class Vacancy:
     """Класс для работы с вакансиями"""
 
-    __slots__ = ("__name", "__salary", "__link", "__experience")
+    __slots__ = ("_name", "_salary", "_link", "_experience")
 
     def __init__(self, name: str, salary: int, link: str, experience: str):
-        self.__name = name
-        self.__salary = self.__validate_salary(salary)
-        self.__link = link
-        self.__experience = experience
+        self._name = name
+        self._salary = self.__validate_salary(salary)
+        self._link = link
+        self._experience = experience if experience else "Нет требований"
+
+    @property
+    def name(self):
+        return self._name
+
+    @property
+    def salary(self):
+        return self._salary
+
+    @property
+    def link(self):
+        return self._link
+
+    @property
+    def experience(self):
+        return self._experience
+
+    def __repr__(self):
+        return (f"Название вакансии: {self.name}\nЗарплата: {self._salary}\n"
+                f"Ссылка: {self.link}\nТребуемый опыт работы: {self.experience}")
 
     def __validate_salary(self, salary):
         """Метод для валидации зарплаты"""
@@ -16,19 +35,20 @@ class Vacancy:
             salary_from = salary.get("from")
             salary_to = salary.get("to")
             return salary_from or salary_to or 0
-        elif isinstance(salary, None):
+        else:
             return 0
 
     def __lt__(self, other):
-        return self.__salary < other.__salary
+        return self._salary < other.salary
 
     def __eq__(self, other):
-        return self.__salary == other.__salary
+        return self._salary == other.salary
 
     def __gt__(self, other):
-        return self.__salary > other.__salary
+        return self._salary > other.salary
 
-    def to_object_list(self, json_data):
+    @staticmethod
+    def to_object_list(json_data):
         """Метод для преобразования данных в формат списка объектов Vacancies"""
         vacancies_list = []
         for i in json_data:
@@ -38,6 +58,3 @@ class Vacancy:
             experience = i.get('snippet', {}).get('requirement', "Не указано")
             vacancies_list.append(Vacancy(name, salary, link, experience))
         return vacancies_list
-
-
-
