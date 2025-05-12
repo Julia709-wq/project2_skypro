@@ -10,7 +10,8 @@ class HeadHunterAPI(BaseAPI):
         self.__url = "https://api.hh.ru/vacancies"
         self.__headers = {"User-Agent": "HH-API-Client"}
 
-    def connect_(self, params: dict):
+    def _connect_(self, params: dict) -> list:
+        """Приватный метод для подключения к API"""
         response = requests.get(
             url=self.__url,
             headers=self.__headers,
@@ -22,13 +23,10 @@ class HeadHunterAPI(BaseAPI):
 
         return response.json()
 
-    def get_data(self, keyword: str):
+    def get_data(self, keyword: str) -> list:
+        """Метод получения данных по поисковому запросу"""
         params = {"text": keyword,
                   "per_page": 30}
 
-        data = self.connect_(params)
+        data = self._connect_(params)
         return data['items']
-
-
-# hh_api = HeadHunterAPI()
-# print(hh_api.get_data('python'))

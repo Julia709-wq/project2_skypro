@@ -6,6 +6,7 @@ from src.vacancies import Vacancy
 
 
 def user_interaction():
+    """Функция взаимодействия с пользователем"""
     hh_api = HeadHunterAPI()
     json_saver = JsonSaver()
 
@@ -41,7 +42,7 @@ def user_interaction():
     # сохранение в файл и вывод
     for vac in top_vacancies:
         print(vac)
-        print("---"*20)
+        print("---" * 20)
         json_saver.add_vacancy(vac)
 
 

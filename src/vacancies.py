@@ -11,24 +11,29 @@ class Vacancy:
 
     @property
     def name(self):
+        """Геттер названия вакансии"""
         return self._name
 
     @property
     def salary(self):
+        """Геттер заработной платы"""
         return self._salary
 
     @property
     def link(self):
+        """Геттер ссылки на вакансию"""
         return self._link
 
     @property
     def experience(self):
+        """Геттер опыта работы"""
         return self._experience
 
     def __repr__(self):
+        """Магический метод для вывода информации о вакансии"""
         return f"Название вакансии: {self.name}\nЗарплата: {self._salary}\nСсылка: {self.link}\nТребуемый опыт работы: {self.experience}"
 
-    def __validate_salary(self, salary):
+    def __validate_salary(self, salary: int):
         """Метод для валидации зарплаты"""
         if isinstance(salary, dict):
             salary_from = salary.get("from")
@@ -38,16 +43,19 @@ class Vacancy:
             return 0
 
     def __lt__(self, other):
+        """Магический метод для сравнения зарплат (меньше)"""
         return self._salary < other.salary
 
     def __eq__(self, other):
+        """Магический метод для сравнения зарплат (равно)"""
         return self._salary == other.salary
 
     def __gt__(self, other):
+        """Магический метод для сравнения зарплат (больше)"""
         return self._salary > other.salary
 
     @staticmethod
-    def to_object_list(json_data):
+    def to_object_list(json_data: dict):
         """Метод для преобразования данных в формат списка объектов Vacancies"""
         vacancies_list = []
         for i in json_data:

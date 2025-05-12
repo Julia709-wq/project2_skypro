@@ -1,6 +1,8 @@
 import json
 
+
 def test_add_vacancy(json_saver, vac1, sample_json_file):
+    """Проверка добавления вакансии в файл"""
     json_saver.add_vacancy(vac1)
 
     with open(sample_json_file, "r", encoding='utf-8') as file:
@@ -9,7 +11,9 @@ def test_add_vacancy(json_saver, vac1, sample_json_file):
     assert len(data) == 1
     assert data[0]["name"] == "Аналитик данных"
 
+
 def test_delete_vacancy(json_saver, vac1, sample_json_file):
+    """Проверка удаления вакансии из файла"""
     json_saver.delete_vacancy(vac1)
 
     with open(sample_json_file, "r", encoding='utf-8') as file:
@@ -17,7 +21,9 @@ def test_delete_vacancy(json_saver, vac1, sample_json_file):
 
     assert len(data) == 0
 
+
 def test_get_vacancy(json_saver, sample_vacancies, sample_json_file):
+    """Проверка получения вакансии из файла"""
     for vac in sample_vacancies:
         json_saver.add_vacancy(vac)
 

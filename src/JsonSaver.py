@@ -15,17 +15,17 @@ class JsonSaver(JsonBase):
             with open(self.__file_path, "w", encoding='utf-8') as f:
                 json.dump([], f)
 
-    def __load_data(self):
-        """Метод загрузки данных в файл"""
+    def __load_data(self) -> list:
+        """Метод загрузки данных из файла"""
         with open(self.__file_path, "r", encoding='utf-8') as f:
             return json.load(f)
 
-    def __save_data(self, data):
+    def __save_data(self, data: dict):
         """Метод сохранения данных в файл"""
         with open(self.__file_path, "w", encoding='utf-8') as f:
-            json.dump(data, f)
+            json.dump(data, f, ensure_ascii=False, indent=4)
 
-    def __vacancy_to_dict(self, vacancy: Vacancy):
+    def __vacancy_to_dict(self, vacancy: Vacancy) -> dict:
         """Представление вакансии в виде словаря"""
         return {
             "name": vacancy.name,
@@ -43,7 +43,7 @@ class JsonSaver(JsonBase):
             data.append(vacancy_dict)
             self.__save_data(data)
 
-    def get_vacancy(self, filters):
+    def get_vacancy(self, filters: dict) -> list:
         """Получение вакансий по фильтрам"""
         data = self.__load_data()
         result = data
@@ -51,7 +51,7 @@ class JsonSaver(JsonBase):
             result = [i for i in result if v.lower() in str(i.get(k, "")).lower()]
         return result
 
-    def delete_vacancy(self, vacancy):
+    def delete_vacancy(self, vacancy: Vacancy):
         """Удаление конкретной вакансии из файла"""
         data = self.__load_data()
         vacancy_dict = self.__vacancy_to_dict(vacancy)
